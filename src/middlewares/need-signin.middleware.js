@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { prisma } from "../prisma/index.js";
+import { prisma } from "../../config/index.js";
 
 import dotenv from "dotenv";
 dotenv.config();
