@@ -4,8 +4,8 @@ import { Resumes } from "../entities/resume.entity.js";
 class ResumeRepository {
   resumeRepository = dataSource.getRepository(Resumes);
 
-  createResume = async (title, content, userName) => {
-    return await this.resumeRepository.insert({ title, content, userName });
+  createResume = async (userId, userName, title, content) => {
+    return await this.resumeRepository.insert({ userId, userName, title, content });
   };
 
   getAllResumes = async () => {

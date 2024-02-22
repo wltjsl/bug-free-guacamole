@@ -1,8 +1,8 @@
 import ResumeRepository from "../repositories/resume.repository.js";
 
 class ResumesService {
-  createResume = async (title, content, userName) => {
-    return await ResumeRepository.createResume(title, content, userName);
+  createResume = async (userId, userName, title, content) => {
+    return await ResumeRepository.createResume(userId, userName, title, content);
   };
 
   getAllResumes = async () => {

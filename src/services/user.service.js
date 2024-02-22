@@ -37,7 +37,7 @@ class UserService {
     }
 
     // 비밀번호 검증
-    const validPassword = bcrypt.compare(password, user.password);
+    const validPassword = await bcrypt.compare(password, user.password);
     if (!validPassword) {
       throw new Error("비밀번호가 일치하지 않습니다.");
     }

@@ -11,7 +11,7 @@ class UserRepository {
   }
 
   async findById(userId) {
-    return await this.userRepository.findOne(userId);
+    return await this.userRepository.findOne({ where: { userId: userId } });
   }
 
   async create(email, password, userName) {

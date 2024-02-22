@@ -13,7 +13,7 @@ class ResumeController {
         return res.status(400).json({ errorMessage: "자기소개를 입력해주세요." });
       }
 
-      const resume = await ResumeService.createResume(user.userName, title, content);
+      const resume = await ResumeService.createResume(user.userId, user.userName, title, content);
 
       return res.status(201).json({ data: resume });
     } catch (error) {
