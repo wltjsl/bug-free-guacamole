@@ -1,25 +1,25 @@
 import ResumeRepository from "../repositories/resume.repository.js";
 
 class ResumesService {
-  async createResume(title, content, userName) {
+  createResume = async (title, content, userName) => {
     return await ResumeRepository.createResume(title, content, userName);
-  }
+  };
 
-  async getAllResumes() {
+  getAllResumes = async () => {
     return await ResumeRepository.getAllResumes();
-  }
+  };
 
-  async getResumeById(resumeId) {
+  getResumeById = async (resumeId) => {
     return await ResumeRepository.getResumeById(resumeId);
-  }
+  };
 
-  async updateResume(resumeId, title, content, status) {
+  updateResume = async (resumeId, title, content, status) => {
     return await ResumeRepository.updateResume(resumeId, title, content, status);
-  }
+  };
 
-  async deleteResume(resumeId) {
+  deleteResume = async (resumeId) => {
     return await ResumeRepository.deleteResume(resumeId);
-  }
+  };
 }
 
 export default new ResumesService();

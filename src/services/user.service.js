@@ -3,11 +3,9 @@ import jwt from "jsonwebtoken";
 import UserRepository from "../repositories/user.repository.js";
 
 class UserService {
-  constructor() {
-    this.userRepository = new UserRepository();
-  }
+  userRepository = new UserRepository();
 
-  async signUp(email, password, passwordCheck, userName) {
+  signUp = async (email, password, passwordCheck, userName) => {
     // 필수 입력값 확인
     if (!email || !password || !passwordCheck || !userName) {
       throw new Error("모든 필드를 입력해주세요.");
@@ -31,9 +29,9 @@ class UserService {
     const newUser = await this.userRepository.create(email, hashedPassword, userName);
 
     return newUser;
-  }
+  };
 
-  async signIn(email, password) {
+  signIn = async (email, password) => {
     // 이메일로 사용자 찾기
     const user = await this.userRepository.findByEmail(email);
     if (!user) {
@@ -50,16 +48,16 @@ class UserService {
     const token = jwt.sign({ userId: user.userId }, process.env.JWT_SECRET, { expiresIn: "12h" });
 
     return token;
-  }
+  };
 
-  async getUser(userId) {
+  getUser = async (userId) => {
     const user = await this.userRepository.findById(userId);
     if (!user) {
       throw new Error("사용자를 찾을 수 없습니다.");
     }
 
     return user;
-  }
+  };
 }
 
 export default UserService;

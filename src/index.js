@@ -1,7 +1,7 @@
 import typeorm from "typeorm";
 import dotenv from "dotenv";
 dotenv.config();
-console.log(process.env.USER_PASSWORD);
+
 const config = {
   type: "mysql",
   host: "localhost",
