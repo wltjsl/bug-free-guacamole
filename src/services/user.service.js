@@ -24,7 +24,15 @@ class UserService {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // 사용자 생성
-    const newUser = await UserRepository.create(email, hashedPassword, userName);
+    const createdUser = await UserRepository.create(email, hashedPassword, userName);
+
+    // 반환할 때는 password 빼고
+    const newUser = {
+      email: createdUser.email,
+      userName: createdUser.userName,
+      createdAt: createdUser.createdAt,
+      updatedAt: createdUser.updatedAt
+    };
 
     return newUser;
   };
@@ -54,7 +62,15 @@ class UserService {
       throw new Error("사용자를 찾을 수 없습니다.");
     }
 
-    return user;
+    // 비밀번호 빼고 반환
+    const myInfo = {
+      email: user.email,
+      userName: user.userName,
+      createdAt: user.createdAt,
+      updatedAt: user.updatedAt
+    };
+
+    return myInfo;
   };
 }
 

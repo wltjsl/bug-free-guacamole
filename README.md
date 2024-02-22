@@ -7,6 +7,7 @@
 - API_URL
 
 # API 명세서 URL
+https://coherent-drive-bcd.notion.site/API-8e7bd6009a13425fbde67ee88c4a89ef?pvs=4
 - [Swagger URL 추가](http://3.34.99.27:3018/api-docs/)
 
 # ERD URL

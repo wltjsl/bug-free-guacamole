@@ -86,7 +86,7 @@ class ResumeController {
       const { resumeId } = req.params;
       const deletedResume = await ResumeService.deleteResume(resumeId);
 
-      return res.status(200).json({ data: deletedResume, message: "성공적으로 삭제되었습니다." });
+      return res.status(200).json({ message: "성공적으로 삭제되었습니다." });
     } catch (error) {
       next(error);
     }
