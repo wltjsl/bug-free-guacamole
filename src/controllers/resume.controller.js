@@ -57,6 +57,22 @@ class ResumeController {
       const { resumeId } = req.params;
       const { title, content, status } = req.body;
 
+      const resume = await ResumeService.getResumeById(resumeId);
+
+      if (!resume) {
+        return res.status(404).json({ errorMessage: "수정할 이력서가 존재하지 않습니다." });
+      }
+
+      if (!title) {
+        return res.status(400).json({ errorMessage: "수정할 제목을 입력해주세요." });
+      }
+      if (!content) {
+        return res.status(400).json({ errorMessage: "수정할 자기소개를 입력해주세요." });
+      }
+      if (!status) {
+        return res.status(400).json({ errorMessage: "변경할 상태를 입력해주세요." });
+      }
+
       const updatedResume = await ResumeService.updateResume(resumeId, title, content, status);
 
       return res.status(200).json({ data: updatedResume, message: "성공적으로 수정되었습니다." });

@@ -17,7 +17,7 @@ const options = {
       { url: "http://localhost:3018" } //local 환경 대비
     ],
     paths: {
-      "/api/sign-up": {
+      "/api/users/sign-up": {
         post: {
           description: "회원가입 API",
           tags: ["Users"],
@@ -57,7 +57,7 @@ const options = {
           }
         }
       },
-      "/api/sign-in": {
+      "/api/users/sign-in": {
         post: {
           description: "로그인 API",
           tags: ["Users"],
@@ -88,7 +88,7 @@ const options = {
           }
         }
       },
-      "/api/users": {
+      "/api/users/me": {
         get: {
           description: "내 정보 조회 API",
           tags: ["Users"],
