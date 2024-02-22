@@ -1,24 +1,23 @@
 import { dataSource } from "../index.js";
 import { Resumes } from "../entities/resume.entity.js";
+
 class ResumeRepository {
-  constructor() {
-    this.resumeRepository = dataSource.getRepository(Resumes);
-  }
+  resumeRepository = dataSource.getRepository(Resumes);
 
-  async createResume(title, content, userName) {
-    return await this.resumeRepository.create({ title, content, userName });
-  }
+  createResume = async (title, content, userName) => {
+    return await this.resumeRepository.insert({ title, content, userName });
+  };
 
-  async getAllResumes() {
+  getAllResumes = async () => {
     return await this.resumeRepository.find();
-  }
+  };
 
-  async getResumeById(resumeId) {
-    return await this.resumeRepository.findOne(resumeId);
-  }
+  getResumeById = async (resumeId) => {
+    return await this.resumeRepository.findOne({ where: { resumeId: resumeId } });
+  };
 
-  async updateResume(resumeId, title, content, status) {
-    const resume = await this.resumeRepository.findOne(resumeId);
+  updateResume = async (resumeId, title, content, status) => {
+    const resume = await this.resumeRepository.findOne({ where: { resumeId: resumeId } });
     if (!resume) {
       throw new Error("이력서 조회에 실패하였습니다.");
     }
@@ -27,11 +26,11 @@ class ResumeRepository {
     resume.status = status;
     await this.resumeRepository.save(resume);
     return resume;
-  }
+  };
 
-  async deleteResume(resumeId) {
+  deleteResume = async (resumeId) => {
     return await this.resumeRepository.delete(resumeId);
-  }
+  };
 }
 
 export default new ResumeRepository();
