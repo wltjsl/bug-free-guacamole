@@ -1,8 +1,6 @@
 // app.js
 
 import express from "express";
-import { DataSource } from "typeorm";
-import config from "../config/index.js";
 import cookieParser from "cookie-parser";
 import LogMiddleware from "./middlewares/log.middleware.js";
 import ErrorHandlingMiddleware from "./middlewares/error-handling.middleware.js";
@@ -34,18 +32,6 @@ app.get("/api/users/me", userController.getUser.bind(userController));
 app.use(ErrorHandlingMiddleware);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 
-const appDataSource = new DataSource(config);
-
-export async function initializeApp() {
-  try {
-    await appDataSource.initialize();
-    console.log("데이터베이스 연결 성공!");
-    app.listen(PORT, () => {
-      console.log(PORT, "포트로 서버가 열렸어요!");
-    });
-  } catch (error) {
-    console.error("데이터베이스 연결 에러", error);
-  }
-}
-
-initializeApp();
+app.listen(PORT, () => {
+  console.log(PORT, "포트로 서버가 열렸어요!");
+});

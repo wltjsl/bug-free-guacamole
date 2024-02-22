@@ -1,9 +1,9 @@
-import { appDataSource } from "../app.js";
+import { dataSource } from "../index.js";
 import { Users } from "../entities/user.entity.js";
 
 class UserRepository {
   constructor() {
-    this.userRepository = appDataSource.getRepository(Users);
+    this.userRepository = dataSource.getRepository(Users);
   }
 
   async findByEmail(email) {
